@@ -2,6 +2,7 @@
     $codigo = $_POST["codigo"]; 
     $quantidade = (float) $_POST["quantidade"];
     $preco_total = 0.0;
+    $tabela2 = [];
 
     if($codigo > 0 and $codigo < 11){
         $preco_uni = 10.0;
@@ -29,36 +30,36 @@
         echo "valor inválido!";
     }
 
-    $preco_final = number_format(($preco_total - $desconto), 2, '.', '');
-    $desconto = number_format($desconto, 2, '.', '');
-    $preco_total = number_format($preco_total, 2, '.', '');
-    $preco_uni = number_format($preco_uni, 2, '.', '');
+    array_push($tabela2, ["Preço Unitário", $preco_uni]);
+    array_push($tabela2, ["Preço Total", $preco_total]);
+    array_push($tabela2, ["Desconto", $desconto]);
+    array_push($tabela2, ["Preço Final", $preco_total - $desconto]);
 
     $tabela = '<table border="1">';
     $tabela .='<tbody>';
-    $tabela .='<thead>';
-    $tabela .= '<tr>';
-    $tabela .= '<th colspan="2"> Dados da Compra </th> '; 
-    $tabela .= '</tr>';
-    $tabela .='</thead>';
-    $tabela .='<tbody>';
-    $tabela .= '<tr>';
-    $tabela .= "<td>Preço unitário</td>";
-    $tabela .= "<td>R$ $preco_uni</td>";
-    $tabela .= '</tr>';
-    $tabela .= '<tr>';
-    $tabela .= "<td>Preço Total</td>";
-    $tabela .= "<td>R$ $preco_total</td>";
-    $tabela .= '</tr>'; 
-    $tabela .= '<tr>';
-    $tabela .= "<td>Desconto</td>";
-    $tabela .= "<td>R$ $desconto</td>";
-    $tabela .= '</tr>'; 
-    $tabela .= '<tr>';
-    $tabela .= "<td>Preço Final</td>";
-    $tabela .= "<td>R$ $preco_final</td>";
-    $tabela .= '</tr>'; 
+    $tabela .='<thead align= "center">';
+    $tabela .='<tr>';
+    $tabela .='<th> Dados da Compra </th> ';
+    $tabela .='<tr>';
+    $tabela .='</head>';
+    foreach($tabela2 as $array){
+        $tabela .= '<tr>';
+        $i = 1;
+        foreach($array as $elemento){
+            $i = $i % 2;
+            if( $i == 0){
+                $elemento = number_format(($elemento), 2, '.', '');
+                $tabela .= "<td>$elemento</td>";
+                
+            }else{
+                $tabela .= "<td>$elemento</td>";
+            }
+            $i += 1;
+        }
+        $tabela .= '</tr>';
+    }
     $tabela .='</tbody>'; 
     $tabela .= '</table>';
     echo $tabela;
+    
 ?>

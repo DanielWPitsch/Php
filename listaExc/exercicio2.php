@@ -19,14 +19,15 @@
     $superior = superior($produtos);    
     
     foreach($inferior as $elemento){
-        echo "inferior: $elemento <br>";
+        echo "preco inferior a R$ 50: R$ $elemento <br>";
     }
+    echo "<br>";
     foreach($entre as $elemento){
-        echo "entre: $elemento    ";
+        echo "preco entre 50 e 100: R$ $elemento <br> ";
     }
-
+    echo "<br>";
     foreach($superior as $elemento){
-        echo "<br> superior: $elemento";
+        echo "preco  superior a 100: R$ $elemento <br>";
     }
         
 ?>
