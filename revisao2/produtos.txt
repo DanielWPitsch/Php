@@ -1,0 +1,12 @@
+Arroz
+2
+5.50
+Feijão
+5
+10.50
+Farofa
+10
+3.50
+Macarrão
+3
+5.30
